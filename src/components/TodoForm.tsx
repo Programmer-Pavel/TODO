@@ -1,8 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 
-export const TodoForm: React.FC = () => {
+interface TodoFormProps {
+    onAdd(title: string): void
+}
+
+export const TodoForm: React.FC<TodoFormProps> = (props) => {
+
+    const [title, setTitle] = useState<string>('');
+
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(event.target.value)
+    }
+
+    const keyPressHandler = (event: React.KeyboardEvent) => {
+        if (event.key === "Enter") {
+            props.onAdd(title)
+            setTitle('')
+        }
+    }
+
+
     return <div className="input-field mt2">
-        <input type="text" id="title" placeholder="Введите название дела"/>
+        <input value={title} type="text" id="title"
+               placeholder="Введите название дела"
+               onChange={changeHandler} onKeyPress={keyPressHandler}/>
         <label htmlFor="title" className="active">
             Введите название дела
         </label>
