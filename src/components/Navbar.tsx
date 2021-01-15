@@ -1,12 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-export const Navbar: React.FunctionComponent = () => {
+export const Navbar: React.FC = () => {
     return <nav>
-        <div className="nav-wrapper blue lighten-4 px1">
-            <a href="/" className="brand-logo">React Список дел</a>
+        <div className="nav-wrapper cyan lighten-2">
+            <NavLink to="/" className="brand-logo logo">React TODO</NavLink>
             <ul className="right hide-on-med-and-down">
-                <li><a href="/">Список дел</a></li>
-                <li><a href="/">О нас</a></li>
+                <li><NavLink to="/">Список дел</NavLink></li>
+                <li><NavLink to="/about">О стеке</NavLink></li>
             </ul>
         </div>
     </nav>

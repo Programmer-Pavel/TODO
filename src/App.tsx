@@ -1,18 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import { Navbar } from './components/Navbar';
-import { TodoForm } from './components/TodoForm';
-import {TodoList} from "./components/TodoList";
-import {ITodo} from "./interfaces";
+import {Navbar} from './components/Navbar';
+import {TodoPage} from "./components/pages/TodoPage";
+import {AboutPage} from "./components/pages/aboutPage";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 const App: React.FC = () => {
-  return <>
-      <Navbar/>
-      <div className="container">
-          <TodoForm onAdd={addHandler}/>
-          <TodoList todos={todos}/>
-      </div>
-  </>
+
+    return <BrowserRouter>
+        <Navbar/>
+        <div className="container">
+            <Switch>
+                <Route component={TodoPage} path="/" exact />
+                <Route component={AboutPage} path="/about" exact />
+            </Switch>
+        </div>
+    </BrowserRouter>
 }
 
 export default App;
